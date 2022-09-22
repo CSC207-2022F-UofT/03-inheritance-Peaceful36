@@ -16,10 +16,11 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
-     protected String color;
-     protected int numberOfContents;
-     protected int capacity;
-     private ArrayList<String> contents;
+
+    protected String color;
+    protected int numberOfContents;
+    protected int capacity;
+    protected String[] contents = new String[capacity];
 
     protected Bag() {
     }
@@ -86,12 +87,14 @@ public abstract class Bag {
      *       and false otherwise.
      */
      public boolean addItem(String item){
-            if(this.numberOfContents < this.capacity){
-                this.contents.add(item);
-                this.numberOfContents++;
+            if (this.numberOfContents < this.capacity){
+                this.contents[this.numberOfContents] = item;
+                this.numberOfContents += 1;
                 return true;
             }
-            return false;
+            else{
+                return false;
+            }
      }
 
 
@@ -108,10 +111,13 @@ public abstract class Bag {
      * @return
      */
      public String popItem(){
-         String res = this.contents.get(numberOfContents - 1);
-         this.contents.remove(numberOfContents - 1);
-         this.numberOfContents--;
-         return res;
+            if(this.numberOfContents > 0){
+                String item = this.contents[this.numberOfContents - 1];
+                this.contents[this.numberOfContents - 1] = null;
+                this.numberOfContents--;
+                return item;
+            }
+            return null;
 
      }
 
@@ -153,7 +159,7 @@ public abstract class Bag {
      */
     public abstract void enhance();
 
-    public void setContents(ArrayList<String> contents) {
+    public void setContents(String[] contents) {
         this.contents = contents;
     }
 }
