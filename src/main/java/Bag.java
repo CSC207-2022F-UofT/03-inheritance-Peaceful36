@@ -117,7 +117,9 @@ public abstract class Bag {
                 this.numberOfContents--;
                 return item;
             }
-            return null;
+            else{
+                return null;
+            }
 
      }
 
